@@ -18,7 +18,7 @@ exports.register = async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        await User.create({ username, password: hashedPassword, email, rol: "usuario" });
+        await User.create({ username, password: hashedPassword, email, role: "usuario" });
 
         res.status(201).json({ message: "Usuario registrado correctamente" });
     } catch (error) {
@@ -49,7 +49,7 @@ exports.login = async (req, res) => {
             maxAge: 60 * 60 * 1000
         });
 
-        res.json({ message: "Inicio de sesión exitoso", token, role: usuario.rol });
+        res.json({ message: "Inicio de sesión exitoso", token, role: usuario.role });
     } catch (error) {
         res.status(500).json({ error: "Error al iniciar sesión" });
     }
@@ -61,7 +61,7 @@ exports.getCurrentUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: "Usuario no encontrado" });
         }
-        res.json({ username: user.username, rol: user.rol });
+        res.json({ username: user.username, role: user.role });
     } catch (error) {
         res.status(500).json({ error: "Error al obtener datos del usuario" });
     }
@@ -81,7 +81,7 @@ exports.cambiarRol = async (req, res) => {
             return res.status(404).json({ error: "Usuario no encontrado" });
         }
 
-        usuario.rol = nuevoRol;
+        usuario.role = nuevoRol;
         await usuario.save();
 
         res.json({ message: `Rol actualizado a '${nuevoRol}' para el usuario '${usuario.username}'` });
@@ -89,6 +89,7 @@ exports.cambiarRol = async (req, res) => {
         res.status(500).json({ error: "Error al actualizar el rol del usuario" });
     }
 };
+
 
 
 

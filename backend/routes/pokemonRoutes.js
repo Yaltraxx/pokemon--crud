@@ -2,6 +2,7 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const pokemonController = require("../controllers/pokemonController");
 const authMiddleware = require("../config/middleware/authMiddleware");
+const isAdmin = require("../config/middleware/isAdmin");
 
 const router = express.Router();
 
@@ -34,7 +35,7 @@ router.post(
 router.put(
     "/:id",
     authMiddleware,
-    require("../config/middleware/isAdmin"),
+    isAdmin,
     [
         check("nombre").optional().isString().trim().escape(),
         check("tipo").optional().isString().trim().escape(),
@@ -54,9 +55,10 @@ router.put(
     }
 );
 
-router.delete("/:id", authMiddleware, require("../config/middleware/isAdmin"), pokemonController.deletePokemon);
+router.delete("/:id", authMiddleware, isAdmin, pokemonController.deletePokemon);
 
 module.exports = router;
+
 
 
 

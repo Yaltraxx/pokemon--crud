@@ -19,10 +19,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/pokemons", pokemonRoutes);
 
 sequelize.authenticate()
-  .then(() => console.log("Conexión a la base de datos exitosa"))
+  .then(() => {
+    return sequelize.sync();
+  })
+  .then(() => {
+    app.listen(5000, () => {
+      console.log("Servidor backend corriendo en http://localhost:5000");
+    });
+  })
   .catch(err => console.error("Error al conectar con la base de datos:", err));
 
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
-});

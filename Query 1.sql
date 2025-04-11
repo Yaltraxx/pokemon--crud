@@ -39,7 +39,51 @@ FLUSH PRIVILEGES;
 SELECT user, host FROM mysql.user;
 ALTER USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
 FLUSH PRIVILEGES;S;
-
+DESCRIBE Users;
+ALTER TABLE Users
+ADD COLUMN role ENUM('admin', 'usuario') NOT NULL DEFAULT 'usuario';
+ALTER TABLE Users
+ADD COLUMN email VARCHAR(100) NOT NULL UNIQUE AFTER password;
+INSERT INTO Users (username, password, email, role, createdAt, updatedAt)
+VALUES (
+  'adminTest',
+  '$2b$10$0D7u9gZCm4SK2N4JrqUOjuyN6gdfN4T5k5t6ckCkNBsDeT/uxYfhK',
+  'admin@test.com',
+  'admin',
+  NOW(),
+  NOW()
+);
+INSERT INTO Users (username, password, email, role, createdAt, updatedAt)
+VALUES (
+  'usuarioTest',
+  '$2b$10$k38lMDVu5hINHHZrLzJciOmYyVgAmmfwGHXKrfhEevTJGRKbsL1Li',
+  'usuario@test.com',
+  'usuario',
+  NOW(),
+  NOW()
+);
+SELECT * FROM Users;
+INSERT INTO Users (username, password, email, role, createdAt, updatedAt)
+VALUES (
+  'AlmitaGod',
+  '$2b$10$2Yzh7yrxoQfdLnxHPOYBheJrZkgPyFK68r0obvJ9OV51vlKfuVvtu',
+  'almita@test.com',
+  'admin',
+  NOW(),
+  NOW()
+);
+UPDATE Users
+SET createdAt = NOW(), updatedAt = NOW()
+WHERE username = 'AlmitaGod';
+INSERT INTO Users (username, password, email, role, createdAt, updatedAt) VALUES (
+  'Eljimmy',
+  '$2b$10$xJAYBldWvTwkFMMjAFJ7ZebYr4efQeFbT6MubobWZPbOhqtCmT5Fq',
+  'eljimmy@admin.com',
+  'admin',
+  NOW(),
+  NOW()
+);
+SELECT * FROM Users WHERE username = 'Eljimmy';
 
 
 

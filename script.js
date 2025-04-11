@@ -35,7 +35,10 @@ function checkAuthStatus() {
     const isAdmin = localStorage.getItem("role") === "admin";
 
     const rolSection = document.getElementById("rolSection");
+    const rolFormContainer = document.getElementById("rolFormContainer");
+
     if (rolSection) rolSection.classList.toggle("hidden", !isAdmin);
+    if (rolFormContainer) rolFormContainer.classList.toggle("hidden", !isAdmin);
 
     if (token && username) {
         document.getElementById("authSection").classList.add("hidden");
@@ -48,6 +51,7 @@ function checkAuthStatus() {
         document.getElementById("pokemonSection").classList.add("hidden");
         document.getElementById("userInfo").classList.add("hidden");
         if (rolSection) rolSection.classList.add("hidden");
+        if (rolFormContainer) rolFormContainer.classList.add("hidden");
     }
 }
 
@@ -231,9 +235,14 @@ function eliminarPokemon(id) {
 
 function handleRolChange(e) {
     e.preventDefault();
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    const role = localStorage.getItem("role");
+    if (role !== "admin") return showErrorAlert("Solo los administradores pueden cambiar roles");
+
     const userId = document.getElementById("userIdRol").value;
     const nuevoRol = document.getElementById("nuevoRol").value;
-    const token = localStorage.getItem("token");
+
     fetch(`${API_BASE}/auth/role/${userId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: token },
@@ -278,4 +287,5 @@ function createAlert(msg, bg) {
     document.body.appendChild(el);
     setTimeout(() => { el.style.animation = "fadeOut 0.3s"; setTimeout(() => el.remove(), 300); }, 3000);
 }
+
 
