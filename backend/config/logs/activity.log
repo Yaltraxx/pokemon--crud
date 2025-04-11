@@ -1,0 +1,13 @@
+[2025-04-11T01:53:06.165Z] Usuario: Invitado | Método: POST | Ruta: /api/auth/register | Estado: 201 | Duración: 87ms
+[2025-04-11T01:53:20.689Z] Usuario: Invitado | Método: POST | Ruta: /api/auth/login | Estado: 200 | Duración: 60ms
+[2025-04-11T01:53:20.694Z] Usuario: Invitado | Método: GET | Ruta: /api/pokemons | Estado: 403 | Duración: 1ms
+[2025-04-11T01:59:11.478Z] Usuario: Invitado | Método: POST | Ruta: /api/auth/register | Estado: 201 | Duración: 76ms
+[2025-04-11T01:59:38.828Z] Usuario: Invitado | Método: POST | Ruta: /api/auth/login | Estado: 200 | Duración: 63ms
+[2025-04-11T01:59:38.831Z] Usuario: Invitado | Método: GET | Ruta: /api/pokemons | Estado: 403 | Duración: 0ms
+[2025-04-11T02:02:38.503Z] Usuario: Invitado | Método: POST | Ruta: /api/auth/login | Estado: 200 | Duración: 58ms
+[2025-04-11T02:02:38.537Z] Usuario: Invitado | Método: GET | Ruta: /api/pokemons | Estado: 403 | Duración: 1ms
+[2025-04-11T02:03:01.597Z] Usuario: Invitado | Método: GET | Ruta: /api/pokemons | Estado: 403 | Duración: 0ms
+[2025-04-11T02:06:01.852Z] Usuario: Invitado | Método: GET | Ruta: /api/pokemons | Estado: 200 | Duración: 15ms
+[2025-04-11T02:12:26.198Z] Usuario: Invitado | Método: POST | Ruta: /api/auth/login | Estado: 200 | Duración: 64ms
+[2025-04-11T02:12:26.204Z] Usuario: Invitado | Método: GET | Ruta: /api/pokemons | Estado: 304 | Duración: 3ms
+[2025-04-11T02:12:35.608Z] Usuario: Invitado | Método: GET | Ruta: /api/pokemons/search?q= | Estado: 200 | Duración: 4ms

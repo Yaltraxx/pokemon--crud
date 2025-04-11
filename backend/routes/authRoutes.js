@@ -5,14 +5,19 @@ const authController = require("../controllers/authController");
 const router = express.Router();
 
 router.post("/register", [
-    check("username").isString().trim().notEmpty().isLength({ min: 3 }),
-    check("password").isString().isLength({ min: 6 })
+    check("username", "El nombre de usuario es obligatorio").notEmpty(),
+    check("email", "El correo no es válido").isEmail(),
+    check("password", "La contraseña debe tener al menos 6 caracteres").isLength({ min: 6 }),
 ], authController.register);
 
-router.post("/login", [
-    check("username").isString().trim().notEmpty(),
-    check("password").isString().notEmpty()
-], authController.login);
+router.post("/login", authController.login);
+
+router.put("/role/:id", authController.cambiarRol);
 
 module.exports = router;
+
+
+
+
+
 

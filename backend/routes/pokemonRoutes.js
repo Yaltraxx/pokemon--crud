@@ -6,12 +6,11 @@ const authMiddleware = require("../config/middleware/authMiddleware");
 const router = express.Router();
 
 router.get("/search", authMiddleware, pokemonController.searchPokemon);
-
 router.get("/", authMiddleware, pokemonController.getPokemons);
-
 router.get("/:id", authMiddleware, pokemonController.getPokemonById);
 
-router.post("/",
+router.post(
+    "/",
     authMiddleware,
     [
         check("nombre").notEmpty().withMessage("Nombre requerido"),
@@ -32,8 +31,10 @@ router.post("/",
     }
 );
 
-router.put("/:id",
+router.put(
+    "/:id",
     authMiddleware,
+    require("../config/middleware/isAdmin"),
     [
         check("nombre").optional().isString().trim().escape(),
         check("tipo").optional().isString().trim().escape(),
@@ -53,9 +54,10 @@ router.put("/:id",
     }
 );
 
-router.delete("/:id", authMiddleware, pokemonController.deletePokemon);
+router.delete("/:id", authMiddleware, require("../config/middleware/isAdmin"), pokemonController.deletePokemon);
 
 module.exports = router;
+
 
 
 

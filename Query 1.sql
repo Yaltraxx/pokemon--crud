@@ -5,7 +5,7 @@ CREATE TABLE pokemons (
     nombre VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     nivel INT NOT NULL CHECK (nivel BETWEEN 1 AND 100),
-    habilidades TEXT NOT NULL, -- Guardará habilidades separadas por comas
+    habilidades TEXT NOT NULL, 
     peso DECIMAL(5,2) NOT NULL,
     altura DECIMAL(5,2) NOT NULL,
     genero ENUM('Macho', 'Hembra', 'Desconocido') NOT NULL,
@@ -36,6 +36,9 @@ SELECT user, host FROM mysql.user;
 ALTER USER 'root'@'localhost'
 IDENTIFIED WITH mysql_native_password BY '123456';
 FLUSH PRIVILEGES;
+SELECT user, host FROM mysql.user;
+ALTER USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
+FLUSH PRIVILEGES;S;
 
 
 

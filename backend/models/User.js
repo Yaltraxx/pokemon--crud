@@ -3,7 +3,7 @@ const sequelize = require("../config/database");
 
 const User = sequelize.define("User", {
     username: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
@@ -18,9 +18,18 @@ const User = sequelize.define("User", {
         validate: {
             isEmail: true
         }
-    }
+    },
+    role: {
+        type: DataTypes.ENUM('admin', 'usuario'),
+        allowNull: false,
+        defaultValue: 'usuario'
+      }      
+}, {
+    timestamps: true
 });
 
 module.exports = User;
+
+
 
 
